@@ -33,7 +33,7 @@ for source_map in /source_maps/*.map; do
 
     #in case we have local copy
     echo "Loading source map $source_map $PETCLINIC_INTERNAL_URL"
-    response_code=$(curl -s -o /tmp/source_map.out -X POST "${ELASTIC_APM_SERVER_URL}/v1/rum/sourcemaps" -w "%{response_code}" -F service_name="${ELASTIC_APM_SERVICE_NAME}-react" -F service_version="${ELASTIC_APM_SERVICE_VERSION}" -F bundle_filepath="${PETCLINIC_INTERNAL_URL}/static/js/${filename}" -F sourcemap=@$source_map)
+    response_code=$(curl -s -o /tmp/source_map.out -X POST "${ELASTIC_APM_SERVER_URL}/assets/v1/sourcemaps" -w "%{response_code}" -F service_name="${ELASTIC_APM_SERVICE_NAME}-react" -F service_version="${ELASTIC_APM_SERVICE_VERSION}" -F bundle_filepath="${PETCLINIC_INTERNAL_URL}/static/js/${filename}" -F sourcemap=@$source_map)
     if [[ $response_code -ne 202 ]]; then
       echo "FAILED Loading source map. Expected 202, got..."
       cat /tmp/source_map.out
@@ -44,7 +44,7 @@ for source_map in /source_maps/*.map; do
 
     #in case we have remote copy
     echo "Loading source map $source_map $PETCLINIC_EXTERNAL_URL"
-    response_code=$(curl -s -o /tmp/source_map.out -X POST "${ELASTIC_APM_SERVER_URL}/v1/rum/sourcemaps" -w "%{response_code}" -F service_name="${ELASTIC_APM_SERVICE_NAME}-react" -F service_version="${ELASTIC_APM_SERVICE_VERSION}" -F bundle_filepath="${PETCLINIC_EXTERNAL_URL}/static/js/${filename}" -F sourcemap=@$source_map)
+    response_code=$(curl -s -o /tmp/source_map.out -X POST "${ELASTIC_APM_SERVER_URL}/assets/v1/sourcemaps" -w "%{response_code}" -F service_name="${ELASTIC_APM_SERVICE_NAME}-react" -F service_version="${ELASTIC_APM_SERVICE_VERSION}" -F bundle_filepath="${PETCLINIC_EXTERNAL_URL}/static/js/${filename}" -F sourcemap=@$source_map)
     if [[ $response_code -ne 202 ]]; then
       echo "FAILED Loading source map. Expected 202, got..."
       cat /tmp/source_map.out
