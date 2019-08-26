@@ -3,7 +3,7 @@ echo "Loading source maps"
 chmod 0666 /source_maps/*.map
 
 #wait for apm-server to come alive
-until  $(curl -s -o /tmp/apm_health_check.out --head --fail "${ELASTIC_APM_SERVER_URL}/healthcheck"); do
+until  $(curl -s -o /tmp/apm_health_check.out --head --fail "${ELASTIC_APM_SERVER_URL}/"); do
     echo "Waiting for APM Server..."
   sleep 1
 done
