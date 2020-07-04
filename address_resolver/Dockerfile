@@ -5,7 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /usr/src/
-RUN git clone https://github.com/elastic/spring-petclinic.git
+RUN git clone https://github.com/emanuil-tolev/spring-petclinic.git
 WORKDIR /usr/src/spring-petclinic/address_resolver/src
 RUN pip install gunicorn json-logging-py
 RUN pip install setuptools==45
